@@ -37,9 +37,7 @@ document.getElementById('the').addEventListener('click', async () => {
         line = line.replaceAll('The ' , '<b>The </b>');
         line = line.replaceAll(' the ' , '<b> the </b>');
         lista.push(line)
-
     }
-
     // kiiratas:
     let quoteLista = document.getElementById('listaOl');
     for (let l of lista){
@@ -67,6 +65,8 @@ document.getElementById('darabszam').addEventListener('click', async () => {
     let response = await fetch('quotes.json');
     let eredmeny = await response.json();
 
-    let szerzoNev = document.getElementById('szerzo').value;
-    
+    let szerzoNev = document.getElementById('szerzo').value.toUpperCase();
+    let szamos = eredmeny.quotes.filter(e => e.author.toUpperCase().includes(szerzoNev))
+    // Kiiratas:
+    document.getElementById('szerzoDarabszam').value = szamos.length;
 });
